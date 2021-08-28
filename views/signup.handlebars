@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iService</title>
+
+    <style>
+        input, select {
+            display: block;
+            margin-top: 5px;
+            padding: 3px;
+        }
+        label {
+            display: block;
+            margin-top: 12px;
+        }
+        button {
+            margin-top: 15px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <form method="POST" action="/signup">
+        <label for="country-of-residence">Country of residence *</label>
+        <select id="country-of-residence" name="country_of_residence" value="{{old_data.country_of_residence}}">
+            <option disabled selected value="null"> -- Select an option -- </option>
+            <option value="australia">Australia</option>
+            <option value="usa">USA</option>
+        </select>
+        {{#if errors.country_of_residence}}
+            <span style="padding-left: 5px; color: red;">{{errors.country_of_residence.msg}}</span>
+        {{/if}}
+
+        <label for="first-name">First name *</label>
+        <input type="text" id="first-name" name="first_name" value="{{old_data.first_name}}" />
+        {{#if errors.first_name}}
+            <span style="padding-left: 5px; color: red;">{{errors.first_name.msg}}</span>
+        {{/if}}
+
+        <label for="last-name">Last name *</label>
+        <input type="text" id="last-name" name="last_name" value="{{old_data.last_name}}" />
+        {{#if errors.last_name}}
+            <span style="padding-left: 5px; color: red;">{{errors.last_name.msg}}</span>
+        {{/if}}
+
+        <label for="email">email *</label>
+        <input type="email" id="email" name="email" value="{{old_data.email}}" />
+        {{#if errors.email}}
+            <span style="padding-left: 5px; color: red;">{{errors.email.msg}}</span>
+        {{/if}}
+
+        <label for="password">Password *</label>
+        <input type="password" id="password" name="password" />
+        {{#if errors.password}}
+            <span style="padding-left: 5px; color: red;">{{errors.password.msg}}</span>
+        {{/if}}
+
+        <label for="confirm-password">Confirm password *</label>
+        <input type="password" id="confirm-password" name="password_confirm" oninput="check(this)" />
+
+        <label for="address">Address *</label>
+        <input type="text" id="address" name="street_line_1" value="{{old_data.street_line_1}}" />
+        {{#if errors.street_line_1}}
+            <span style="padding-left: 5px; color: red;">{{errors.street_line_1.msg}}</span>
+        {{/if}}
+        <input type="text" id="address" name="street_line_2" value="{{old_data.street_line_2}}" />
+        {{#if errors.street_line_2}}
+            <span style="padding-left: 5px; color: red;">{{errors.street_line_2.msg}}</span>
+        {{/if}}
+
+        <label for="city">City *</label>
+        <input type="text" id="city" name="city" value="{{old_data.city}}" />
+        {{#if errors.city}}
+            <span style="padding-left: 5px; color: red;">{{errors.city.msg}}</span>
+        {{/if}}
+
+        <label for="state">State *</label>
+        <input type="text" id="state" name="state" value="{{old_data.state}}" />
+        {{#if errors.state}}
+            <span style="padding-left: 5px; color: red;">{{errors.state.msg}}</span>
+        {{/if}}
+
+        <label for="postcode">Postcode</label>
+        <input type="text" id="postcode" name="postcode" value="{{old_data.postcode}}" />
+        {{#if errors.postcode}}
+            <span style="padding-left: 5px; color: red;">{{errors.postcode.msg}}</span>
+        {{/if}}
+
+        <label for="phone">Mobile Phone Number</label>
+        <input type="text" id="phone" name="phone_number" value="{{old_data.phone_number}}" />
+        {{#if errors.phone_number}}
+            <span style="padding-left: 5px; color: red;">{{errors.phone_number.msg}}</span>
+        {{/if}}
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        function check(input) {
+            if (input.value != document.getElementById('password').value) {
+                input.setCustomValidity('Password Must be Matching.');
+            } else {
+                input.setCustomValidity('');
+            }
+        }
+    </script>
+</body>
+</html>
